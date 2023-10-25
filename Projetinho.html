@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite Especial</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand&display=swap">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffebcd; /* Mocassim - uma cor romântica */
+    }
+
+    #introducao, #convite {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px; /* Ajustado para limitar a largura */
+      margin: 20px; /* Margens adicionadas */
+    }
+
+    #introducao p {
+      margin-bottom: 15px; /* Espaçamento entre os parágrafos */
+    }
+
+    #convite {
+      display: none;
+    }
+
+    #btnSim, #btnNao, #btnProsseguir {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #btnSim {
+      background-color: #dc3545; /* Vermelho escuro - uma cor romântica */
+      color: #fff;
+    }
+
+    #btnNao, #btnProsseguir {
+      background-color: #343a40; /* Preto - uma cor romântica */
+      color: #fff;
+    }
+
+    #btnNao:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    #mensagemBloqueio {
+      font-size: 12px;
+      color: #dc3545; /* Vermelho escuro - uma cor romântica */
+    }
+  </style>
+</head>
+<body>
+
+<div id="introducao">
+  <p>Ei Emilly?</p>
+  <p>Tudo bom? Espero que simm. Então, <strong> preciso que você disfarce e finja que nada está acontecendo!</strong> Então, venho por meio desta "carta" comunicar a minha decisão de me desligar da empresa, que tomei após o último sábado, em virtude de um convite especial que gostaria de lhe fazer. Rs</p>
+  <button id="btnProsseguir">Prosseguir</button>
+</div>
+
+<div id="convite">
+  <p>Fecha sair comigo?</p>
+  <p>Só eu e você, você e eu, com direito a muita comida, risada e o que você quiser hahah &#128527</p>
+  <button id="btnSim">Sim</button>
+  <button id="btnNao">Não</button>
+  <div id="mensagemBloqueio"></div>
+</div>
+
+<script>
+  const introducao = document.getElementById('introducao');
+  const convite = document.getElementById('convite');
+  const btnSim = document.getElementById('btnSim');
+  const btnNao = document.getElementById('btnNao');
+  const btnProsseguir = document.getElementById('btnProsseguir');
+  const mensagemBloqueio = document.getElementById('mensagemBloqueio');
+
+  let naoClickCount = 0;
+
+  btnSim.addEventListener('click', () => {
+    exibirMensagemSorriso();
+  });
+
+  btnNao.addEventListener('click', () => {
+    moverBotaoNao();
+  });
+
+  btnProsseguir.addEventListener('click', () => {
+    mostrarConvite();
+  });
+
+  function exibirMensagemSorriso() {
+    if (confirm('Dê um sorriso se a resposta for sim! \n \n OBS: Não se esqueça de clicar em "Ok"')) {
+      abrirWhatsApp();
+    }
+  }
+
+  function abrirWhatsApp() {
+  window.open('https://api.whatsapp.com/send?phone=11994268163', '_blank');
+  // Atualizar a página para abrir o link do YouTube após o WhatsApp
+  setTimeout(() => {
+    window.location.href = 'https://youtu.be/xN4YdQtOWs4?si=SvuZhqV6nWaoEjLo';
+  }, 2000); // Atraso de 2 segundos (ajustável conforme necessário)
+}
+
+
+  function moverBotaoNao() {
+    const posicoes = [
+      { top: '10%', left: '10%' },
+      { top: '20%', left: '50%' },
+      { top: '50%', left: '80%' },
+      { top: '80%', left: '50%' },
+      { top: '50%', left: '10%' }
+    ];
+
+    if (naoClickCount < posicoes.length) {
+      const posicao = posicoes[naoClickCount];
+      btnNao.style.position = 'absolute';
+      btnNao.style.top = posicao.top;
+      btnNao.style.left = posicao.left;
+      naoClickCount++;
+    } else {
+      // Reiniciar o contador quando atingir o final das posições
+      naoClickCount = 0;
+    }
+  }
+
+  function mostrarConvite() {
+    introducao.style.display = 'none';
+    convite.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
